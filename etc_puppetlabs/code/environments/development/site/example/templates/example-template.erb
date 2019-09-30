@@ -1,0 +1,6 @@
+This is an example of template
+Hostname: <%= @hostname %>
+Interfaces: 
+<% @interfaces.split('.').each do|interface| %>
+  interface is <%= interface %>
+<% end %>

@@ -1,0 +1,19 @@
+#sources:
+#  operartions:
+#    remote: 'git@github.com:davidboukari/environments.git'
+#    basedir: '/etc/puppetlabs/code/environments'
+#    prefix: false
+#
+
+sources:
+  :control:
+    remote: '/root/repogit/control.git'
+    basedir: '/etc/puppetlabs/code/environments'
+    prefix: false
+  :ctl:
+    remote: '/root/repogit/control.git'
+    basedir: '/etc/puppetlabs/code/environments'
+    prefix: true
+
+
+

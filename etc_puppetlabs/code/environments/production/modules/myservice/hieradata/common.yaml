@@ -1,0 +1,16 @@
+---
+myservice::packages:
+  'httpd':
+    ensure: '2.4.6-90.el7.centos'
+  'vim-minimal':
+    ensure: '7.4.160-5.el7'
+
+myservice::config_values:
+  'httpd_config_path': '/etc/httpd/conf'
+  'httpd_config_file': 'httpd.conf'
+
+myservice::default_user: vagrant
+myservice::default_group: vagrant
+myservice::service_name: myservice
+myservice::service_path: /etc/systemd/system/myservice.service
+

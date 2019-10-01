@@ -1,0 +1,14 @@
+[Unit]
+Description=myservice (test)
+After=syslog.target network.target
+
+[Service]
+Type=forking
+#User=<%= $default_user %>
+#Group=<%= $default_group %>
+#ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+ExecStart=/usr/sbin/runuser -l <%=$default_user %> -c "/usr/bin/sleep 5000 &"
+#ExecStop=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+
+[Install]
+WantedBy=multi-user.target

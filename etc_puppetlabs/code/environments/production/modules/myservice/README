@@ -1,0 +1,2 @@
+To test
+$ puppet apply -d examples/test_myservice.pp

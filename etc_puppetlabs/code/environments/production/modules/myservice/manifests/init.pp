@@ -8,6 +8,8 @@ class myservice(
   $default_group,
   $service_name,
   $service_path,
+  $concat1,
+  $concat2,
 )
 {
  
@@ -124,18 +126,18 @@ class myservice(
  -> service{ $service_name:
       ensure => running,  
       enable => true
-    
-
   }
-
-
-
-  # --------------------------------------------------------------------------
-  # Use lens to configure a file
-  # --------------------------------------------------------------------------
 
   # --------------------------------------------------------------------------
   # Use nslookup instead of hiera('')
+  # Show a concatened value in yaml which use %{lookup('...')}...
+  # --------------------------------------------------------------------------
+  notify{'A concatanation':
+    message => "concat1=${concat1} concat2=%{nslookup('myservice::concat1')}def=${concat2}"    
+  }
+
+  # --------------------------------------------------------------------------
+  # Use lens to configure a file
   # --------------------------------------------------------------------------
 
 

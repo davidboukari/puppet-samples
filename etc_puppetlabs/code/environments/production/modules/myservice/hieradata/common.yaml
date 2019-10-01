@@ -14,3 +14,5 @@ myservice::default_group: vagrant
 myservice::service_name: myservice
 myservice::service_path: /etc/systemd/system/myservice.service
 
+myservice::concat1: abc
+myservice::concat2: "%{lookup('myservice::concat1')}def"

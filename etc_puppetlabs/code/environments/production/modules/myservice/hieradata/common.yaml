@@ -3,7 +3,8 @@ myservice::packages:
   'httpd':
     ensure: '2.4.6-90.el7.centos'
   'vim-minimal':
-    ensure: '7.4.160-5.el7'
+    #ensure: '7.4.160-5.el7'
+    ensure: latest
 
 myservice::config_values:
   'httpd_config_path': '/etc/httpd/conf'

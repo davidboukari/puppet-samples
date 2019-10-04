@@ -144,6 +144,71 @@ class myservice(
   # --------------------------------------------------------------------------
   # Use module augeas - lens for a configuration file
   # --------------------------------------------------------------------------
+  augeas { "Change PermitRootLogin for sshd":
+    context => "/files/etc/ssh/sshd_config",
+    onlyif  => "get '/files/etc/ssh/sshd.config' != 'yes'  ",
+    changes => ["set '/files/etc/ssh/sshd.config' 'yes' ",],
+    #notify  => Service["sshd"],
+  }
+
+  # --------------------------------------------------------------------------
+  # Install nginx
+  # --------------------------------------------------------------------------
+  class { nginx:  }
+ 
+  nginx::resource::server{mywebserver:
+      ensure   => present,
+      www_root => '/var/www',
+      ssl      => true,
+      listen_port => 443,
+      ssl_port  => 443,
+      ssl_cert => '/tmp/ssl/server.crt',
+      ssl_key  => '/tmp/ssl/server.key',
+    } 
+
+  
+
+  #nginx::resource::server { "mywebserver":
+  #  ensure                => present,
+  #  listen_port           => 443,
+  #  www_root              => 'root',
+  #  #proxy                 => $proxy,
+  #  #location_cfg_append   => $location_cfg_append,
+  #  index_files           => [ 'index.php' ],
+  #  ssl                   => true,
+  #  ssl_cert              => '/home/vagrant/git/ssl/server.crt',
+  #  ssl_key               => '/path/to/wildcard_mydomain.key',
+  #}
+
+
+  #nginx::resource::server { 'mywebserver':
+  #  ensure               => present,
+  #  server_name          => ['hawksys.eu'],
+  #  listen_port          => 443,
+  #  ssl                  => true,
+  #  ssl_cert             => '/home/vagrant/git/ssl/server.crt',
+  #  ssl_key              => '/home/vagrant/git/ssl/server.key',
+  #  ssl_port             => 8140,
+  #  #server_cfg_append    => {
+  #  #  'passenger_enabled'      => 'on',
+  #  #  'passenger_ruby'         => '/usr/bin/ruby',
+  #  #  'ssl_crl'                => '/var/lib/puppet/ssl/ca/ca_crl.pem',
+  #  #  'ssl_client_certificate' => '/var/lib/puppet/ssl/certs/ca.pem',
+  #  #  'ssl_verify_client'      => 'optional',
+  #  #  'ssl_verify_depth'       => 1,
+  #  #},
+  #  #www_root             => '/etc/puppet/rack/public',
+  #  #use_default_location => false,
+  #  #access_log           => '/var/log/nginx/puppet_access.log',
+  #  #error_log            => '/var/log/nginx/puppet_error.log',
+  #  #passenger_cgi_param  => {
+  #  #  'HTTP_X_CLIENT_DN'     => '$ssl_client_s_dn',
+  #  #  'HTTP_X_CLIENT_VERIFY' => '$ssl_client_verify',
+  #  #},
+  #}
+
+  
+ 
 
 
 

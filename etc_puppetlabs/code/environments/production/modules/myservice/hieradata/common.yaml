@@ -10,6 +10,14 @@ myservice::config_values:
   'httpd_config_path': '/etc/httpd/conf'
   'httpd_config_file': 'httpd.conf'
 
+myservice::config::httpd_ports: 8080
+myservice::config::httpd_user:  www-data
+myservice::config::httpd_group: www-data
+myservice::config::httpd_admin_mail: admin@mysite.com
+myservice::config::httpd_log_file: /var/log/nginx.log
+myservice::config::httpd_log_level: err
+
+
 myservice::default_user: vagrant
 myservice::default_group: vagrant
 myservice::service_name: myservice

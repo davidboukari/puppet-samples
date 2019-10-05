@@ -17,7 +17,7 @@ class myservice(
   # Display an attribut from the class myservice::config 
   # --------------------------------------------------------------------------
   notify{'1 - test':
-    message => "ports = $myservice::config::httpd_ports" 
+    message => "ports = ${lookup('myservice::config::httpd_ports')}" 
   }
 
   # --------------------------------------------------------------------------
@@ -58,12 +58,12 @@ class myservice(
     #mode   => '0600',
     content=> epp("${module_name}/httpd.conf.epp",  
       {
-      'httpd_ports' => $::myservice::config::httpd_ports, 
-      'httpd_user' => $::myservice::config::httpd_user, 
-      'httpd_group' => $::myservice::config::httpd_group, 
-      'httpd_admin_mail' => $::myservice::config::httpd_admin_mail, 
-      'httpd_log_file' => $::myservice::config::httpd_log_file, 
-      'httpd_log_level' => $::myservice::config::httpd_log_level, 
+      'httpd_ports' => "${lookup('myservice::config::httpd_ports')}", 
+      'httpd_user' => "${lookup('myservice::config::httpd_user')}", 
+      'httpd_group' => "${lookup('myservice::config::httpd_group')}", 
+      'httpd_admin_mail' => "${lookup('myservice::config::httpd_admin_mail')}", 
+      'httpd_log_file' => "${lookup('myservice::config::httpd_log_file')}", 
+      'httpd_log_level' => "${lookup('myservice::config::httpd_log_level')}", 
       }
     ),
   }
@@ -117,7 +117,7 @@ class myservice(
     )
     
   }
-  -> exec{"${myservice_name}-systemd-reload":
+  -> exec{"${service_name}-systemd-reload":
        command => 'systemctl daemon-reload',
        path  => [ '/usr/bin', '/bin', '/usr/sbin' ],
        refreshonly => true
@@ -158,7 +158,7 @@ class myservice(
  
   nginx::resource::server{mywebserver:
       ensure   => present,
-      www_root => '/var/www',
+      www_root => '/var/www/html',
       ssl      => true,
       listen_port => 443,
       ssl_port  => 443,

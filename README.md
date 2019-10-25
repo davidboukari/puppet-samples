@@ -1,10 +1,12 @@
-# puppet-samples
+### puppet-samples ###
 
-#Create a new module
+# Create a new module
+
 pdk new module mypdk
 pdk new class mypdk
 
-#show fact
+# show fact
+
 facter -p
 FACTERLIB=/var/lib/puppet/lib/facter:/var/lib/puppet/facts  facter -p
 
@@ -13,7 +15,7 @@ puppet config print
 cd ...
 puppet module generate fullstackpuppet-ntp
 
-#Create a Puppetfile and install plugins
+# Create a Puppetfile and install plugins
 cat Puppetfile
 mod 'puppetlabs-stdlib', '6.0.0'
 mod 'saz-sudo', '6.0.0'
@@ -21,7 +23,7 @@ mod 'puppet-grafana', '6.0.0'
 
 r10k puppetfile install
 
-#https://puppet.com/docs/pdk/1.x/pdk_testing.html
+# https://puppet.com/docs/pdk/1.x/pdk_testing.html
 pdk  test unit
 
 For just a compil without pki
@@ -34,7 +36,7 @@ yum install puppetserver
 #Edit puppetserver service unit memory setting
 vim /etc/sysconfig/puppetserver 
 
-#Read certificate
+# Read certificate
 cd /etc/puppetlabs/puppet/ssl
 openssl x509 -text -noout -in ca/ca_crt.pem
 openssl s_client -showcerts -connect ma.ttias.be:443
@@ -47,7 +49,7 @@ augparse  c_rehash     dmidecode        facter  hiera  mco           puppet     
 augtool   curl         erb              fadot   hocon  mcollectived  pxp-agent  ri       rmsginit   rxgettext  virt-what    xmllint
 catstomp  curl-config  extlookup2hiera  gem     irb    openssl       rake       rmsgcat  rmsgmerge  stompcat   xml2-config  xslt-config
 
-#Jvm conf
+# Jvm conf
 $ cat  /etc/sysconfig/puppetserver 
 # Init settings for puppetserver
 JAVA_BIN="/usr/bin/java"
@@ -120,33 +122,41 @@ $ puppet cert sign <agent name>
 $ puppet cert clean centos-agent
 
 # Show the fact
+
 facter
 facter |grep hostname
 
-#Set puppetserver in conf file
+# Set puppetserver in conf file
+
 cat /etc/puppetlabs/puppet/puppet.conf |grep -v "#"
 [main]
 server = puppetmaster
 
 
 # Check the puppet configuration
+
 puppet config print
 puppet config print|grep module
 
 # Apply the agent with a server
+
 puppet agent -t --server puppetmaster
 
 
-#Apply an environ
+# Apply an environ
+
 puppet agent -t --server puppetmaster --environment development
 
 # Template ruby .erb
+
 https://puppet.com/docs/puppet/6.4/lang_template_erb.html
 
 # Check the syntax
+
 puppet parser validate init.pp
 
 ### Syntax ###
+
 content => @("CONF"/L)
 This is the content of the 
 file...
@@ -154,6 +164,7 @@ file...
  | CONF
 
 ### Install a puppet server from scrash ###
+
 * Install the depot by puppetlabs
 * Update script on /etc/sysconfig/puppetserver.conf (jvm memory)
 * Edit /etc/hosts and add hosts name
@@ -172,6 +183,7 @@ file...
 
 
 ### git & r10k ###
+
 git init --bare $HOME/gitrepo/control.git
 git clone $HOME/repogit/control.git
 cd control
@@ -196,6 +208,7 @@ Done installing documentation for puppet_forge, r10k after 1 seconds
 2 gems installed
 
 ### Deploy the environment: Deploy the environment with the branch & install plug in by using PuppetFile ###
+
 cat /etc/puppetlabs/r10k/r10k.yaml 
 #sources:
 #  operartions:

@@ -1,35 +1,44 @@
 ### puppet-samples ###
 
 # Create a new module
-
+```bash
 pdk new module mypdk
 pdk new class mypdk
+```
 
 # show fact
-
+```bash
 facter -p
 FACTERLIB=/var/lib/puppet/lib/facter:/var/lib/puppet/facts  facter -p
+```
 
-Write a module
+# Write a module
+```bash
 puppet config print
 cd ...
 puppet module generate fullstackpuppet-ntp
+```
 
 # Create a Puppetfile and install plugins
+```bash
 cat Puppetfile
 mod 'puppetlabs-stdlib', '6.0.0'
 mod 'saz-sudo', '6.0.0'
 mod 'puppet-grafana', '6.0.0'
 
 r10k puppetfile install
+```
 
 # https://puppet.com/docs/pdk/1.x/pdk_testing.html
+```bash
 pdk  test unit
 
 For just a compil without pki
 puppet agent --test --waitforcert 10
+```
 
 ### Install puppetserver ###
+```bash
 rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 yum update
 yum install puppetserver
@@ -110,8 +119,10 @@ $ service puppetserver status
 $ service puppetserver start
 $ netstat -laputen|grep 8140
 tcp6       0      0 :::8140                 :::*                    LISTEN      52         59634      31127/java     
+```
 
 $ puppet cert list
+
 [root@puppetmaster ~]# puppet cert list --all
 + "puppetmaster" (SHA256) D1:B2:6E:5C:A9:C3:DF:2C:00........... (alt names: "DNS:puppet", "DNS:puppetmaster")
 

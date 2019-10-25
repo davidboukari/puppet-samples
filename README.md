@@ -121,6 +121,8 @@ $ netstat -laputen|grep 8140
 tcp6       0      0 :::8140                 :::*                    LISTEN      52         59634      31127/java     
 ```
 
+## Certificate ##
+```bash
 $ puppet cert list
 
 [root@puppetmaster ~]# puppet cert list --all
@@ -131,6 +133,7 @@ $ puppet cert sign <agent name>
 $ puppet cert sign <agent name>
 
 $ puppet cert clean centos-agent
+```
 
 # Show the fact
 

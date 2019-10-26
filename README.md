@@ -1,5 +1,23 @@
 ### puppet-samples ###
 
+
+# To associate a node to a module
+```bash
+cat /etc/puppetlabs/code/environments/production/manifests/site.pp
+# site.pp
+node default {
+  include mydefaultmodule
+}
+
+node /nodeabc/ {
+  include myservice
+}
+
+node node1 {
+  include hawksysmoon
+}
+```
+
 # Create a new module
 ```bash
 pdk new module mypdk

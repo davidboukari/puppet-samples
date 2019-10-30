@@ -348,3 +348,36 @@ environment.conf  manifests  modules  Puppetfile
 
 ### Puppet DB ###
 * To store facts, reports, and exported ressources
+
+
+### Facter & Facts ###
+* https://www.tutorialspoint.com/puppet/puppet_facter_facts.htm
+
+* Node send facter result to master before the master generatesva catalog
+
+* Custom Facts
+
+```bash
+export FACTER_mycustomfact='valueofmycustomfact'
+[root@node1 tmp]# facter mycustomfact
+valueofmycustomfact
+```
+
+* External Facts
+
+```bash
+mkdir -p /etc/facter/facts.d
+
+cat /etc/facter/facts.d/myuser.sh
+!/bin/bash
+
+echo "user1 = bob1"
+echo "user2 = bob2"
+echo "user3 = bob3"
+
+exit 0
+
+
+facter user1
+```
+

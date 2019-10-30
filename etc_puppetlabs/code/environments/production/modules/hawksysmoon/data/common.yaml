@@ -1,0 +1,7 @@
+---
+#hawksysmoon::config::install_user: vagrant
+#hawksysmoon::config::install_root_dir: "/home/%{lookup('hawksysmoon::config::install_user')}"
+
+hawksysmoon::config::install_user: vagrant
+hawksysmoon::config::install_root_dir: "/home/vagrant"
+

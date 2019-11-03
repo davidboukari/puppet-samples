@@ -1,6 +1,16 @@
 ### puppet-samples ###
 
 
+#Add modules .fixtures.yml
+cat <module_name>/.fixtures.yml
+---
+fixtures:
+  forge_modules:
+#     stdlib: "puppetlabs/stdlib"
+    stdlib: puppetlabs/stdlib
+    concat: puppetlabs/concat
+    nginx: puppetlabs/nginx
+
 # To associate a node to a module
 ```bash
 cat /etc/puppetlabs/code/environments/production/manifests/site.pp

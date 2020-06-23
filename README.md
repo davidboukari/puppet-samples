@@ -1,5 +1,8 @@
 ### puppet-samples ###
 
+#puppet apply
+
+puppet apply --modulepath=. -e 'include <module_name>'
 
 #Add modules .fixtures.yml
 cat <module_name>/.fixtures.yml

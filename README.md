@@ -394,3 +394,24 @@ exit 0
 facter user1
 ```
 
+## puppet tags
+
+```bash
+apache::vhost {'docs.puppetlabs.com':
+  port => 80,
+  tag  => ['us_mirror1', 'us_mirror2'],
+}
+
+class role::public_web {
+  tag 'us_mirror1', 'us_mirror2'
+
+  apache::vhost {'docs.puppetlabs.com':
+    port => 80,
+  }
+  ssh::allowgroup {'www-data': }
+  @@nagios::website {'docs.puppetlabs.com': }
+}
+
+$ sudo puppet agent --test --tags apache,us_mirror1
+
+```
